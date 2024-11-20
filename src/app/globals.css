@@ -3,19 +3,51 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --background: #f5f5f7;
+  --foreground: #0f0f0f;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Font Variables */
+  --font-transformamix-extralight: "TransformaMix ExtraLight", sans-serif;
+  --font-transformamix-light: "TransformaMix Light", sans-serif;
+  --font-transformamix-medium: "TransformaMix Medium", sans-serif;
+  --font-transformamix-regular: "TransformaMix Regular", sans-serif;
+  --font-transformamix-semibold: "TransformaMix SemiBold", sans-serif;
+  --font-transformasans-black: "TransformaSans Black", sans-serif;
+  --font-transformasans-extrabold: "TransformaSans ExtraBold", sans-serif;
+  --font-transformasans-bold: "TransformaSans Bold", sans-serif;
+  --font-transformasans-medium: "TransformaSans Medium", sans-serif;
+  --font-transformasans-regular: "TransformaSans Regular", sans-serif;
+  --font-transformascript-extralight: "TransformaScript ExtraLight", sans-serif;
+  --font-transformascript-light: "TransformaScript Light", sans-serif;
+  --font-transformascript-medium: "TransformaScript Medium", sans-serif;
+  --font-transformascript-regular: "TransformaScript Regular", sans-serif;
 }
 
 body {
+  background: var(--background) !important;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+b {
+  font-family: var(--font-transformamix-semibold);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #4a9b98 !important;
+  font-size: 1.5rem !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #89c28c !important;
+}
+
+.slider .slick-dots li.slick-active div {
+  background: #89C28C !important;
+}
+
+.slider .slick-dots div {
+  transition: background-color 0.3s ease !important;
+}
+
