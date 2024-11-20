@@ -27,6 +27,9 @@ export default function AxolotlHeader() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        flexDirection: "column", // Stack content vertically for small screens
+        px: { xs: 2, sm: 4, md: 6 }, // Padding for small screens
+        mt: { xs: "32px", md: "64px" }, // Adjust margin for different screens
       }}
     >
       {/* Darken Overlay */}
@@ -52,6 +55,7 @@ export default function AxolotlHeader() {
           zIndex: 2,
           textAlign: "center",
           color: "white",
+          padding: "0 1rem", // Add padding for extra text spacing on small screens
         }}
       >
         <Typography
@@ -60,7 +64,7 @@ export default function AxolotlHeader() {
             fontWeight: "bold",
             fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
             lineHeight: 1.2,
-            mb: 2,
+            mb: { xs: 1, md: 2 },
           }}
         >
           El Ajolote: Tesoro <br /> de Xochimilco
@@ -72,6 +76,7 @@ export default function AxolotlHeader() {
             lineHeight: 1.6,
             maxWidth: "600px",
             mx: "auto",
+            mt: { xs: 1, md: 2 }, // Adjust spacing between elements for different screens
           }}
         >
           Un ser único que nos conecta con la naturaleza, la historia y la

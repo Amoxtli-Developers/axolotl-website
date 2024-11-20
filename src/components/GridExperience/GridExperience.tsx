@@ -1,9 +1,14 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Box, Typography, Grid, Tabs, Tab, Card } from "@mui/material";
+import { Box, Typography, Tabs, Tab, Card, Grid } from "@mui/material";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+
 import test from "@assets/grid/test.jpg";
 import test2 from "@assets/grid/test2.jpg";
 import test3 from "@assets/grid/test3.jpg";
@@ -46,7 +51,6 @@ export default function GridExperience() {
         py: { xs: 4, md: 6 },
         textAlign: "center",
         alignContent: "center",
-        height: "100vh",
       }}
     >
       {/* Title Animation */}
@@ -68,14 +72,16 @@ export default function GridExperience() {
         centered
         sx={{
           mb: 4,
+          flexWrap: "wrap",
           ".MuiTabs-indicator": { display: "none" },
           ".MuiTab-root": {
             textTransform: "none",
             border: "1px solid #4A9B98",
             borderRadius: "20px",
+            px: 2,
             mx: 1,
-            minWidth: "150px",
             color: "#4A9B98",
+            fontSize: { xs: "0.8rem", sm: "1rem" },
             "&.Mui-selected": {
               backgroundColor: "#4A9B98",
               color: "white",
@@ -103,30 +109,88 @@ export default function GridExperience() {
             exit={{ opacity: 0, y: -20 }} // Exit animation state
             transition={{ duration: 0.3 }} // Smooth animation timing
           >
-            <Grid container spacing={4}>
-              {experiencesData[selectedTab].images.map((image, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Card
-                    sx={{
-                      borderRadius: "30px",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <Box
-                      sx={{ position: "relative", width: "100%", height: 350 }}
+            {/* Swiper for Mobile */}
+            <Box sx={{ display: { xs: "block", md: "none" } }}>
+              <Swiper
+                modules={[Pagination]} // Enable pagination
+                spaceBetween={10}
+                slidesPerView={1}
+                pagination={{
+                  clickable: true,
+                  bulletClass: "swiper-pagination-bullet",
+                  bulletActiveClass: "swiper-pagination-bullet-active",
+                }}
+                loop
+                autoplay={{ delay: 5000 }}
+              >
+                {experiencesData[selectedTab].images.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <Card
+                      sx={{
+                        borderRadius: "30px",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                        overflow: "hidden",
+                      }}
                     >
-                      <Image
-                        src={typeof image === "string" ? image : image.src}
-                        alt={`Experience Image ${index + 1}`}
-                        fill
-                        style={{ objectFit: "cover" }}
-                      />
-                    </Box>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
+                      <Box
+                        sx={{
+                          position: "relative",
+                          width: "100%",
+                          height: 350,
+                        }}
+                      >
+                        <Image
+                          src={image}
+                          alt={`Experience Image ${index + 1}`}
+                          fill
+                          style={{ objectFit: "cover" }}
+                        />
+                      </Box>
+                    </Card>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <style jsx global>{`
+                .swiper-pagination-bullet {
+                  background-color: #ddd; // Default color for dots
+                }
+                .swiper-pagination-bullet-active {
+                  background-color: white; // Active dot color
+                }
+              `}</style>
+            </Box>
+
+            {/* Grid for Desktop */}
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
+              <Grid container spacing={4}>
+                {experiencesData[selectedTab].images.map((image, index) => (
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <Card
+                      sx={{
+                        borderRadius: "30px",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          position: "relative",
+                          width: "100%",
+                          height: 350,
+                        }}
+                      >
+                        <Image
+                          src={image}
+                          alt={`Experience Image ${index + 1}`}
+                          fill
+                          style={{ objectFit: "cover" }}
+                        />
+                      </Box>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
           </motion.div>
         </AnimatePresence>
       </motion.div>

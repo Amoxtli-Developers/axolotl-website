@@ -64,16 +64,23 @@ export default function AxolotlGrid() {
           backgroundColor: "#F9F9F9",
         }}
       >
-        <Grid container spacing={4} justifyContent="center">
+        <Grid container spacing={4}>
           {/* Row 1: Three Cards */}
           {cardData.slice(0, 3).map((card, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={index}
+            >
               <Card
                 sx={{
                   borderRadius: "20px",
                   boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
                   overflow: "hidden",
                   height: "100%",
+                  width: "100%",
                 }}
               >
                 <Image
@@ -88,7 +95,7 @@ export default function AxolotlGrid() {
                 <CardContent>
                   <Typography
                     variant="h4"
-                    sx={{ fontWeight: "bold", mb: 1, color: "#587542" }}
+                    sx={{ fontWeight: "bold", mb: 1 }}
                     textAlign={"left"}
                   >
                     {card.title}
@@ -127,7 +134,7 @@ export default function AxolotlGrid() {
               <CardContent>
                 <Typography
                   variant="h4"
-                  sx={{ fontWeight: "bold", mb: 1, color: "#4A9B98" }}
+                  sx={{ fontWeight: "bold", mb: 1 }}
                   textAlign={"left"}
                 >
                   {cardData[3].title}
@@ -164,7 +171,7 @@ export default function AxolotlGrid() {
               <CardContent>
                 <Typography
                   variant="h4"
-                  sx={{ fontWeight: "bold", mb: 1, color: "#587542" }}
+                  sx={{ fontWeight: "bold", mb: 1 }}
                   textAlign={"left"}
                 >
                   {cardData[4].title}

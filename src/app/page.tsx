@@ -13,6 +13,8 @@ import Pricing from "@components/Pricing/Pricing";
 import GridExperience from "@components/GridExperience/GridExperience";
 import AxolotlHeader from "@components/AxolotlHeader/AxolotlHeader";
 import AxolotlGrid from "@components/AxolotlGrid/AxolotlGrid";
+import Preserve from "@components/Preserve/Preserve";
+import Footer from "@components/Footer/Footer";
 
 const Home: NextPage = () => {
   return (
@@ -26,6 +28,8 @@ const Home: NextPage = () => {
       <GridExperience />
       <AxolotlHeader />
       <AxolotlGrid />
+      <Preserve />
+      <Footer />
     </ThemeProvider>
   );
 };

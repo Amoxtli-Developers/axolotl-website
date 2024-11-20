@@ -23,6 +23,12 @@
   --font-transformascript-regular: "TransformaScript Regular", sans-serif;
 }
 
+html,
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
 body {
   background: var(--background) !important;
   color: var(--foreground);
