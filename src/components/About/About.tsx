@@ -3,18 +3,23 @@
 import React, { useRef } from "react";
 import { Box, Grid, Typography, Button } from "@mui/material";
 import Image from "next/image";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Autoplay } from "swiper/modules";
 import { motion, useInView } from "framer-motion";
 
-import axolotl1 from "@assets/about/axo.png";
-import axolotl2 from "@assets/about/axo.png";
-import axolotl3 from "@assets/about/axo.png";
+import axolotl1 from "@assets/about/image1.jpeg";
+import axolotl2 from "@assets/about/image2.jpeg";
+import axolotl3 from "@assets/about/image3.jpeg";
 
 const images = [axolotl1, axolotl2, axolotl3];
 
-export default function About() {
+interface HeaderProps {
+  handleDialogOpen: () => void;
+}
+
+export default function About({ handleDialogOpen }: HeaderProps) {
   const textRef = useRef(null);
   const sliderRef = useRef(null);
 
@@ -26,47 +31,13 @@ export default function About() {
     visible: { opacity: 1, y: 0 },
   };
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    customPaging: (i: number) => ( //eslint-disable-line
-      <div
-        style={{
-          width: "10px",
-          height: "10px",
-          background: "#E0E0E0",
-          borderRadius: "50%",
-        }}
-        className="dot"
-      ></div>
-    ),
-    appendDots: (dots: React.ReactNode) => (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "10px",
-          marginTop: "16px",
-        }}
-      >
-        {dots}
-      </div>
-    ),
-  };
-
   return (
     <Box
       sx={{
         px: { xs: 2, sm: 4, md: 6 },
         py: { xs: 4, md: 6 },
         textAlign: "center",
-        minHeight: "50vh",
+        minHeight: "70vh",
         display: "flex",
         alignItems: "center",
         marginTop: "2rem",
@@ -82,29 +53,44 @@ export default function About() {
             variants={fadeInVariants}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <Box>
-              <Slider {...sliderSettings} className="slider">
+            <Box
+              sx={{
+
+
+                margin: "0 auto",
+              }}
+            >
+              <Swiper
+                modules={[Pagination, Autoplay]}
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 3000 }}
+                loop={true}
+                className="slider"
+              >
                 {images.map((image, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Image
-                      src={image}
-                      alt={`Axolotl ${index + 1}`}
-                      width={300}
-                      height={300}
-                      style={{
-                        borderRadius: "8px",
-                        objectFit: "cover",
+                  <SwiperSlide key={index}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        height: { xs: "300px", md: "500px" }, // Ajusta la altura del slider
+                        width: "100%", // Ajusta el ancho del slider
                       }}
-                    />
-                  </Box>
+                    >
+                      <Image
+                        src={image}
+                        alt={`Axolotl ${index + 1}`}
+                        width={700} // Aumenta el ancho de la imagen
+                        height={500} // Ajusta la altura para mantener proporción
+                        style={{
+                          borderRadius: "16px", // Bordes redondeados
+                          objectFit: "cover", // Asegura que la imagen se ajuste al contenedor
+                        }}
+                      />
+                    </Box>
+                  </SwiperSlide>
                 ))}
-              </Slider>
+              </Swiper>
             </Box>
           </motion.div>
         </Grid>
@@ -137,16 +123,23 @@ export default function About() {
               }}
             >
               En{" "}
-              <b style={{ color: "#4A9B98" }}>Reptilario y Ajolotario Quetzal</b>, somos un santuario
-              en Xochimilco dedicado al rescate y conservación de especies
-              exóticas y nativas. Nos enfocamos en proteger animales en peligro
-              y en educar a la comunidad sobre la importancia de preservar
-              nuestra biodiversidad. A través de nuestro compromiso, buscamos
-              inspirar respeto y cuidado por la vida silvestre, especialmente
-              por especies emblemáticas como el ajolote.
+              <b style={{ color: "#4A9B98" }}>
+                Reptilario y Ajolotario Quetzal
+              </b>
+              , somos una asociación civil y santuario ubicado en Xochimilco,
+              dedicado al rescate, conservación y protección de diversas
+              especies exóticas, nativas y en peligro de extinción. Nos
+              enfocamos en cuidar animales de granja, de compañía, reptiles, y
+              en especial a nuestro emblemático amigo, el ajolote de Xochimilco.
+              A través de nuestro compromiso, buscamos educar a la comunidad
+              sobre la importancia de preservar nuestra biodiversidad e inspirar
+              respeto y cuidado por la vida silvestre, promoviendo un mayor amor
+              por nuestro entorno natural.
             </Typography>
+
             <Button
               variant="outlined"
+              onClick={handleDialogOpen}
               sx={{
                 color: "#4A9B98",
                 borderColor: "#4A9B98",

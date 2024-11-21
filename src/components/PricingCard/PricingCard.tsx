@@ -44,7 +44,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         {subtitle}
       </Typography>
       <Typography
-        variant="h4"
+        variant="h3"
         sx={{
           fontWeight: "bold",
           mb: 2,
@@ -53,7 +53,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         {title}
       </Typography>
       <Typography
-        variant="h3"
+        variant="h2"
         sx={{
           fontWeight: "bold",
           mb: 2,
@@ -78,7 +78,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
               alignItems: "center",
               gap: 1,
               py: 0.5,
-              fontSize: "14px",
+              fontSize: { xs: "14px", sm: "16px" },
             }}
           >
             {/* Use icon if provided, otherwise default to 🐾 */}
@@ -104,7 +104,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
               color: backgroundColor,
             },
             borderRadius: "24px",
-            px: 4,
+            px: 10,
             py: 1.5,
           }}
         >

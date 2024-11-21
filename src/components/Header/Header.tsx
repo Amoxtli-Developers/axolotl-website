@@ -5,7 +5,11 @@ import { Box, Typography, Button, Grid } from "@mui/material";
 import WhiteNavbar from "@components/WhiteNavbar/WhiteNavbar";
 import { motion } from "framer-motion";
 
-export default function Header() {
+interface HeaderProps {
+  handleDialogOpen: () => void;
+}
+
+export default function Header({ handleDialogOpen }: HeaderProps) {
   return (
     <>
       <WhiteNavbar />
@@ -38,21 +42,21 @@ export default function Header() {
           sx={{
             position: "relative",
             zIndex: 2,
-            textAlign: { xs: "center", md: "left" }, // Responsive alignment
+            textAlign: { xs: "center", md: "left" },
             color: "white",
-            px: { xs: 2, sm: 6, md: 12 }, // Adjust padding for mobile and desktop
+            px: { xs: 2, sm: 6, md: 12 },
           }}
         >
           <motion.div
-            initial={{ opacity: 0, x: -50 }} // Start off-screen to the left
-            animate={{ opacity: 1, x: 0 }} // Animate to visible and centered
-            transition={{ duration: 0.8, ease: "easeOut" }} // Duration and easing
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <Typography
               variant="h1"
               sx={{
-                fontFamily: "var(--font-transformasansBold)", // Custom font
-                fontSize: { xs: "2rem", sm: "3rem", md: "4rem" }, // Responsive font size
+                fontFamily: "var(--font-transformasansBold)",
+                fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
                 lineHeight: 1.2,
                 mb: 2,
               }}
@@ -63,26 +67,27 @@ export default function Header() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }} // Start off-screen to the right
-            animate={{ opacity: 1, x: 0 }} // Animate to visible and centered
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }} // Delay to stagger animation
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
             <Grid
               container
               spacing={2}
               sx={{ mt: 4 }}
-              justifyContent={{ xs: "center", md: "flex-start" }} // Center on mobile, align left on desktop
+              justifyContent={{ xs: "center", md: "flex-start" }}
               alignItems={"center"}
             >
               <Grid item xs={12} sm={6} md={4}>
                 <Button
                   variant="outlined"
                   fullWidth
+                  onClick={handleDialogOpen} // Abre el diálogo
                   sx={{
                     color: "white",
                     borderColor: "white",
                     borderRadius: "30px",
-                    px: { xs: 2, md: 4 }, // Adjust padding for responsiveness
+                    px: { xs: 2, md: 4 },
                     py: 1.5,
                     "&:hover": {
                       backgroundColor: "white",

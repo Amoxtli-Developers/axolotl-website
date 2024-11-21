@@ -48,11 +48,16 @@ export default function Footer() {
               mb: 2,
             }}
           >
-            <Link href="#" target="_blank" aria-label="Google" underline="none">
+            <Link
+              href="https://www.google.com/maps/place/Reptilario+Quetzal/@19.3203322,-99.27102,36062m/data=!3m1!1e3!4m6!3m5!1s0x85ce0100190273fb:0xcfd9cb61cdd8ad60!8m2!3d19.2749484!4d-99.1016485!16s%2Fg%2F11w3bs3568?entry=ttu&g_ep=EgoyMDI0MTExOC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              aria-label="Google"
+              underline="none"
+            >
               <GoogleIcon sx={{ fontSize: 36, color: "#6BA59B" }} />
             </Link>
             <Link
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61558182304087"
               target="_blank"
               aria-label="Facebook"
               underline="none"
@@ -60,7 +65,7 @@ export default function Footer() {
               <FacebookIcon sx={{ fontSize: 36, color: "#6BA59B" }} />
             </Link>
             <Link
-              href="#"
+              href="https://www.instagram.com/reptilarioquetzal/"
               target="_blank"
               aria-label="Instagram"
               underline="none"
@@ -88,7 +93,7 @@ export default function Footer() {
             }}
           >
             <Button
-              href="https://amoxtli.tech/store"
+              href="https://amoxtli.tech/"
               target="_blank"
               variant="contained"
               sx={{
@@ -116,6 +121,8 @@ export default function Footer() {
               Ser voluntario
             </Button>
             <Button
+              href="https://wa.link/7y8yno"
+              target="_blank"
               variant="contained"
               sx={{
                 backgroundColor: "#4A9B98",

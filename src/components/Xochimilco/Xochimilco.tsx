@@ -102,13 +102,16 @@ export default function XochimilcoComponent() {
                   textAlign={"justify"}
                   className="text-foreground"
                 >
-                  Xochimilco, conocido como el &apos;lugar de las flores&apos;, ha sido un
-                  tesoro natural desde tiempos prehispánicos. Sus chinampas,
-                  sistemas agrícolas flotantes creados por las culturas mexicas,
-                  representan una maravilla de ingeniería y biodiversidad que ha
-                  perdurado por siglos. Este entorno no solo proporcionó
-                  alimentos, sino que también estableció un ecosistema único en el
-                  mundo.
+                  Xochimilco, conocido como el &apos;lugar de las flores&apos;,
+                  significa &quot;campo de flores&quot; en Náhuatl. Este lugar se
+                  distingue por sus preciosos canales y sus chinampas llenas de
+                  flores y sembradíos de hortalizas. Desde tiempos
+                  prehispánicos, Xochimilco ha sido un tesoro natural. Sus
+                  chinampas, sistemas agrícolas flotantes creados por las
+                  culturas mexicas, representan una maravilla de ingeniería y
+                  biodiversidad que ha perdurado por siglos. Este entorno no
+                  solo proporcionó alimentos, sino que también estableció un
+                  ecosistema único en el mundo.
                 </Typography>
               </CardContent>
             </Card>
@@ -162,11 +165,15 @@ export default function XochimilcoComponent() {
                   textAlign={"justify"}
                   className="text-foreground"
                 >
-                  Hoy en día, Xochimilco es hogar de especies en peligro de
-                  extinción, como el ajolote, un símbolo de resistencia y
-                  regeneración. Este ecosistema es vital para la supervivencia de
-                  flora y fauna endémicas, convirtiéndose en un refugio natural
-                  que debemos proteger y preservar para las futuras generaciones.
+                  ¿Sabes quién habita los canales? El canal es hogar del
+                  Axolotl, del náhuatl &quot;monstruo de agua&quot;, mejor conocido como
+                  ajolote. Este pequeño anfibio es capaz de regenerar sus
+                  extremidades y órganos, pero lamentablemente está en peligro
+                  de extinción. Hoy en día, Xochimilco es hogar de especies como
+                  el ajolote, un símbolo de resistencia y regeneración. Este
+                  ecosistema es vital para la supervivencia de flora y fauna
+                  endémicas, convirtiéndose en un refugio natural que debemos
+                  proteger y preservar para las futuras generaciones.
                 </Typography>
               </CardContent>
             </Card>
@@ -212,7 +219,8 @@ export default function XochimilcoComponent() {
                   }}
                   className="text-foreground"
                 >
-                  Reptilario y Ajolotario Quetzal: Compromiso con la Conservación
+                  Reptilario y Ajolotario Quetzal: Compromiso con la
+                  Conservación
                 </Typography>
                 <Typography
                   variant="body1"
@@ -220,11 +228,16 @@ export default function XochimilcoComponent() {
                   textAlign={"justify"}
                   className="text-foreground"
                 >
-                  En el Reptilario y Ajolotario Quetzal, trabajamos cada día para
-                  rescatar, rehabilitar y conservar especies exóticas y nativas de
-                  Xochimilco. Nos dedicamos a educar sobre la importancia de la
-                  biodiversidad y a inspirar acciones de conservación para
-                  preservar este paraíso natural y cultural único.
+                  En el <b>Reptilario y Ajolotario Quetzal</b>, trabajamos cada día
+                  para rescatar, rehabilitar y conservar especies exóticas y
+                  nativas de Xochimilco. Nos dedicamos a educar sobre la
+                  importancia de la biodiversidad y a inspirar acciones de
+                  conservación para preservar este paraíso natural y cultural
+                  único. Actualmente, existen varias asociaciones civiles que
+                  también se dedican a proteger y reproducir al ajolote en
+                  cautiverio, utilizando estanques de semilibertad para
+                  garantizar su supervivencia y contribuir a la restauración de
+                  su población en su hábitat natural.
                 </Typography>
               </CardContent>
             </Card>

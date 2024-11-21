@@ -1,53 +1,78 @@
 "use client";
 
-import React from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  Grid,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+} from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 import { motion } from "framer-motion";
 import PricingCard from "@components/PricingCard/PricingCard";
 import axolotlIconPrimary from "@assets/icons/pricing/axolotlIconPrimary.svg";
 import axolotlIconSecondary from "@assets/icons/pricing/axolotlIconSecondary.svg";
 import axolotlIconTertiary from "@assets/icons/pricing/axolotlIconTertiary.svg";
+import Link from "next/link";
 
 const pricingData = [
   {
-    title: "Conoce Xochimilco",
-    subtitle: "Tour Básico",
-    price: "$500 MXN",
+    title: "Paquete Quetzal",
+    subtitle: "Experiencia Básica",
+    price: "$3,500 MXN",
     features: [
-      { text: "Incluye paseo guiado", icon: axolotlIconSecondary },
-      { text: "Incluye visita a chinampas", icon: axolotlIconSecondary },
-      { text: "Incluye explicación cultural", icon: axolotlIconSecondary },
-      { text: "Incluye snacks locales", icon: axolotlIconSecondary },
-      { text: "Incluye seguro básico", icon: axolotlIconSecondary },
-      { text: "Incluye transporte interno", icon: axolotlIconSecondary },
+      { text: "2h en trajinera", icon: axolotlIconSecondary },
+      { text: "Reptilario y Ajolotario", icon: axolotlIconSecondary },
+      { text: "Baños limpios", icon: axolotlIconSecondary },
+      { text: "Máximo 20 personas", icon: axolotlIconSecondary },
     ],
     backgroundColor: "#ffffff",
     textColor: "#587542",
     cardIcon: axolotlIconPrimary,
   },
   {
-    title: "Conoce Xochimilco",
-    subtitle: "Tour Intermedio",
-    price: "$800 MXN",
+    title: "Paquete Axolotl",
+    subtitle: "Experiencia Intermedia",
+    price: "$5,000 MXN",
     features: [
-      { text: "Todo lo del básico", icon: axolotlIconPrimary },
-      { text: "Acceso a zonas restringidas", icon: axolotlIconPrimary },
-      { text: "Guía personal", icon: axolotlIconPrimary },
-      { text: "Fotografía profesional", icon: axolotlIconPrimary },
+      { text: "Amanecer en trajinera", icon: axolotlIconPrimary },
+      { text: "Desayuno incluido", icon: axolotlIconPrimary },
+      {
+        text: "Reptilario y Ajolotario con explicación",
+        icon: axolotlIconPrimary,
+      },
+      { text: "Interacción con los animales", icon: axolotlIconPrimary },
+      { text: "Baños limpios", icon: axolotlIconPrimary },
+      { text: "Máximo 20 personas", icon: axolotlIconPrimary },
     ],
     backgroundColor: "#4A9B98",
     textColor: "#ffffff",
     cardIcon: axolotlIconSecondary,
   },
   {
-    title: "Conoce Xochimilco",
-    subtitle: "Tour Premium",
-    price: "$1,200 MXN",
+    title: "Paquete Xóchitl",
+    subtitle: "Experiencia Premium",
+    price: "$12,500 MXN",
     features: [
-      { text: "Todo lo del intermedio", icon: axolotlIconTertiary },
-      { text: "Cena local", icon: axolotlIconTertiary },
-      { text: "Acceso a recorridos nocturnos", icon: axolotlIconTertiary },
-      { text: "Recuerdo personalizado", icon: axolotlIconTertiary },
+      { text: "Atardecer en trajinera", icon: axolotlIconTertiary },
+      {
+        text: "Reptilario y Ajolotario con explicación",
+        icon: axolotlIconTertiary,
+      },
+      { text: "Interacción con los animales", icon: axolotlIconTertiary },
+      {
+        text: "Comida (brocheta, quesadillas, mixiote)",
+        icon: axolotlIconTertiary,
+      },
+      {
+        text: "Barra libre (Michelada, Cantarito, Mojito, Azulito)",
+        icon: axolotlIconTertiary,
+      },
+      { text: "Baños limpios", icon: axolotlIconTertiary },
+      { text: "Máximo 20 personas", icon: axolotlIconTertiary },
     ],
     backgroundColor: "#ffffff",
     textColor: "#89C28C",
@@ -56,9 +81,23 @@ const pricingData = [
 ];
 
 export default function Pricing() {
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleDialogOpen = () => {
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   return (
@@ -78,18 +117,31 @@ export default function Pricing() {
         viewport={{ once: true, amount: 0.2 }}
         variants={containerVariants}
       >
-        <Typography
-          variant="h2"
-          sx={{ fontWeight: "bold", mb: 4 }}
-          className="text-foreground"
-        >
-          Únete a la Conservación: <br />
-          Tours por Xochimilco
-        </Typography>
-        <Typography
-          variant="body1"
+        <Box
           sx={{
-            maxWidth: "800px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            mb: 4,
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{ fontWeight: "bold", mr: 1 }}
+            className="text-foreground"
+          >
+            Únete a la Conservación:
+            <br />
+            Tours por Xochimilco
+          </Typography>
+          <IconButton onClick={handleDialogOpen} sx={{ color: "#4A9B98" }}>
+            <InfoIcon fontSize="large" />
+          </IconButton>
+        </Box>
+        <Typography
+          variant="h6"
+          sx={{
+            maxWidth: "1200px",
             mx: "auto",
             mb: 6,
             lineHeight: 1.6,
@@ -119,6 +171,71 @@ export default function Pricing() {
           ))}
         </Grid>
       </motion.div>
+
+      <Typography
+        variant="body2"
+        sx={{
+          mt: 6,
+          color: "#777",
+          fontSize: "24px",
+        }}
+      >
+        Pregunta por los paquetes en kayak
+      </Typography>
+
+      {/* Dialog for Policies */}
+      <Dialog
+        open={openDialog}
+        onClose={handleDialogClose}
+        fullWidth
+        maxWidth="sm"
+        sx={{
+          ".MuiDialog-paper": {
+            borderRadius: "30px",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+            padding: 2,
+          },
+        }}
+      >
+        <DialogTitle variant="h3">Políticas de Reservación</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            - Todas las reservaciones deberán realizarse a través de nuestro
+            sitio web. Cada paquete está sujeto a disponibilidad de lugares en
+            la trajinera.
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            - Al momento de realizar la reservación, deberá pagarse el 50% del
+            total del paquete mediante transferencia bancaria.
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2, textAlign: "center" }}>
+            <span style={{ color: "#0f0f0f", fontWeight: "bold" }}>
+              Número de cuenta:
+            </span>{" "}
+            1234 5678 9012 3456
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            - El comprobante de transferencia deberá enviarse por WhatsApp al
+            número:{" "}
+            <Link
+              href="https://wa.link/ezxixs"
+              target="_blank"
+              style={{ fontWeight: "bold", color: "#0f0f0f" }} // Personaliza el estilo aquí
+            >
+              +52 55 1898 4355
+            </Link>
+            .
+          </Typography>
+
+          <Typography variant="body1">
+            - En caso de cancelación o no asistencia el día de la reservación
+            del paquete, el 50% pagado no será{" "}
+            <span style={{ color: "#0f0f0f", fontWeight: "bold" }}>
+              reembolsable.
+            </span>
+          </Typography>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }

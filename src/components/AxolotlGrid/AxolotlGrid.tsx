@@ -5,10 +5,10 @@ import { Box, Grid, Typography, Card, CardContent } from "@mui/material";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import axolotl1 from "@assets/axolotl/history.jpg";
-import axolotl2 from "@assets/axolotl/history.jpg";
-import axolotl3 from "@assets/axolotl/history.jpg";
-import axolotl4 from "@assets/axolotl/history.jpg";
-import axolotl5 from "@assets/axolotl/history.jpg";
+import axolotl2 from "@assets/axolotl/xochi.jpg";
+import axolotl3 from "@assets/axolotl/importance.webp";
+import axolotl4 from "@assets/axolotl/funFact.jpg";
+import axolotl5 from "@assets/axolotl/why.jpg";
 
 const cardData = [
   {
@@ -32,9 +32,9 @@ const cardData = [
   {
     image: axolotl4,
     title: "Datos Curiosos",
-    description:
-      "El ajolote puede regenerar partes de su cuerpo, como el cerebro, el corazón y las extremidades, una capacidad que mantiene durante toda su vida.",
-  },
+    description: 
+      "El ajolote puede regenerar partes de su cuerpo, como el cerebro, el corazón y las extremidades, una capacidad que mantiene durante toda su vida. Además, el ajolote deja de envejecer a los 4 años, y gracias a este descubrimiento, científicos estudian tratamientos eficaces contra el envejecimiento de los seres humanos.",
+  },  
   {
     image: axolotl5,
     title: "¿Por qué no se puede tener un ajolote en casa?",
@@ -58,7 +58,7 @@ export default function AxolotlGrid() {
     >
       <Box
         sx={{
-          px: { xs: 2, sm: 4, md: 6 },
+          px: { xs: 2, sm: 4, md: 20 },
           py: { xs: 4, md: 6 },
           textAlign: "center",
           backgroundColor: "#F9F9F9",
@@ -88,7 +88,7 @@ export default function AxolotlGrid() {
                   alt={card.title}
                   style={{
                     width: "100%",
-                    height: "200px",
+                    height: "300px",
                     objectFit: "cover",
                   }}
                 />
@@ -127,7 +127,7 @@ export default function AxolotlGrid() {
                 alt={cardData[3].title}
                 style={{
                   width: "100%",
-                  height: "200px",
+                  height: "300px",
                   objectFit: "cover",
                 }}
               />
@@ -164,7 +164,7 @@ export default function AxolotlGrid() {
                 alt={cardData[4].title}
                 style={{
                   width: "100%",
-                  height: "200px",
+                  height: "300px",
                   objectFit: "cover",
                 }}
               />
