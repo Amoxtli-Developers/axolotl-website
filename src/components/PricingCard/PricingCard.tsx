@@ -4,14 +4,20 @@ import React from "react";
 import { Box, Card, Typography, Button, List, ListItem } from "@mui/material";
 import Image from "next/image";
 
+type Feature = {
+  text: string;
+  icon?: string; // Opcional: icono para cada característica
+};
+
 type PricingCardProps = {
   title: string;
   subtitle: string;
   price: string;
-  features: { text: string; icon?: string }[]; // Support for text with optional icons
-  backgroundColor?: string; // Customizable background color
-  textColor?: string; // Customizable text color
-  cardIcon: string; // Icon for the card header
+  features: Feature[]; // Lista de características con texto y opcionalmente iconos
+  backgroundColor?: string; // Color de fondo personalizable
+  textColor?: string; // Color de texto personalizable
+  cardIcon: string; // Icono principal de la tarjeta
+  onReserveClick?: () => void; // Función para manejar clic en el botón Reservar
 };
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -21,6 +27,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   features,
   backgroundColor = "white",
   textColor = "#4A9B98",
+  onReserveClick,
 }) => {
   return (
     <Card
@@ -67,7 +74,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         sx={{
           textAlign: "left",
           marginTop: 2,
-          flexGrow: 1, // Ensures the list stretches to take up available space
+          flexGrow: 1, // Estira la lista para llenar el espacio disponible
         }}
       >
         {features.map((feature, index) => (
@@ -81,7 +88,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
               fontSize: { xs: "14px", sm: "16px" },
             }}
           >
-            {/* Use icon if provided, otherwise default to 🐾 */}
+            {/* Si hay icono lo muestra, sino usa un marcador por defecto */}
             {feature.icon ? (
               <Image src={feature.icon} alt="Feature Icon" width={20} height={20} />
             ) : (
@@ -96,6 +103,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
       <Box sx={{ mt: 3 }}>
         <Button
           variant="outlined"
+          onClick={onReserveClick} // Llama a la función pasada como prop
           sx={{
             color: textColor,
             borderColor: textColor,

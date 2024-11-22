@@ -17,6 +17,7 @@ import AxolotlGrid from "@components/AxolotlGrid/AxolotlGrid";
 import Preserve from "@components/Preserve/Preserve";
 import Footer from "@components/Footer/Footer";
 
+// Importamos el loader dinámicamente
 const Loader = dynamic(() => import("@components/Loader/Loader"), {
   ssr: false,
 });
@@ -30,10 +31,10 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+      setLoading(false); // Ocultamos el loader tras 2 segundos
+    }, 3500);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); // Limpiamos el temporizador al desmontar
   }, []);
 
   if (loading) {

@@ -13,6 +13,8 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import { motion } from "framer-motion";
 import PricingCard from "@components/PricingCard/PricingCard";
+import ReservationForm from "@components/ReservationForm/ReservationForm";
+import ConfirmationModal from "@components/ConfirmationModal/ConfirmationModal";
 import axolotlIconPrimary from "@assets/icons/pricing/axolotlIconPrimary.svg";
 import axolotlIconSecondary from "@assets/icons/pricing/axolotlIconSecondary.svg";
 import axolotlIconTertiary from "@assets/icons/pricing/axolotlIconTertiary.svg";
@@ -32,6 +34,7 @@ const pricingData = [
     backgroundColor: "#ffffff",
     textColor: "#587542",
     cardIcon: axolotlIconPrimary,
+    hours: ["10:00 AM", "12:00 PM", "2:00 PM"],
   },
   {
     title: "Paquete Axolotl",
@@ -51,6 +54,7 @@ const pricingData = [
     backgroundColor: "#4A9B98",
     textColor: "#ffffff",
     cardIcon: axolotlIconSecondary,
+    hours: ["8:00 AM", "10:00 AM", "6:00 PM"],
   },
   {
     title: "Paquete Xóchitl",
@@ -77,18 +81,64 @@ const pricingData = [
     backgroundColor: "#ffffff",
     textColor: "#89C28C",
     cardIcon: axolotlIconTertiary,
+    hours: ["4:00 PM", "6:00 PM", "8:00 PM"],
   },
 ];
 
 export default function Pricing() {
-  const [openDialog, setOpenDialog] = useState(false);
+  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+  const [reservationFormOpen, setReservationFormOpen] = useState(false); //eslint-disable-line
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<any>(null); //eslint-disable-line
+  const [reservationData, setReservationData] = useState<any>(null);//eslint-disable-line
 
-  const handleDialogOpen = () => {
-    setOpenDialog(true);
+  const handleInfoDialogOpen = () => {
+    setInfoDialogOpen(true);
   };
 
-  const handleDialogClose = () => {
-    setOpenDialog(false);
+  const handleInfoDialogClose = () => {
+    setInfoDialogOpen(false);
+  };
+
+  const handleReserveClick = (packageData: any) => { //eslint-disable-line
+    setSelectedPackage(packageData);
+    setReservationFormOpen(true);
+  };
+
+  const handleReservationFormClose = () => {
+    setSelectedPackage(null);
+    setReservationFormOpen(false);
+  };
+
+  const handleReservationConfirm = (data: any) => { //eslint-disable-line
+    setReservationData(data);
+    setReservationFormOpen(false);
+    setConfirmationOpen(true);
+  };
+
+  const handleCloseConfirmation = () => {
+    setConfirmationOpen(false);
+    setReservationData(null);
+  };
+
+  const handleConfirmAndSend = () => {
+    const message = `
+Reservación:
+- Paquete: ${reservationData.packageName}
+- Nombre: ${reservationData.name}
+- Correo: ${reservationData.email}
+- Teléfono: ${reservationData.phone}
+- Número de personas: ${reservationData.numPeople}
+- Fecha: ${reservationData.reservationDate}
+- Hora: ${reservationData.reservationHour}
+- Extras: ${reservationData.extras || "Ninguno"}
+    `.trim();
+
+    const whatsappUrl = `https://wa.me/525518984355?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
+    handleCloseConfirmation();
   };
 
   const containerVariants = {
@@ -134,7 +184,7 @@ export default function Pricing() {
             <br />
             Tours por Xochimilco
           </Typography>
-          <IconButton onClick={handleDialogOpen} sx={{ color: "#4A9B98" }}>
+          <IconButton onClick={handleInfoDialogOpen} sx={{ color: "#4A9B98" }}>
             <InfoIcon fontSize="large" />
           </IconButton>
         </Box>
@@ -166,7 +216,10 @@ export default function Pricing() {
         <Grid container spacing={4} justifyContent="center">
           {pricingData.map((data, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <PricingCard {...data} />
+              <PricingCard
+                {...data}
+                onReserveClick={() => handleReserveClick(data)}
+              />
             </Grid>
           ))}
         </Grid>
@@ -183,10 +236,10 @@ export default function Pricing() {
         Pregunta por los paquetes en kayak
       </Typography>
 
-      {/* Dialog for Policies */}
+      {/* Info Dialog */}
       <Dialog
-        open={openDialog}
-        onClose={handleDialogClose}
+        open={infoDialogOpen}
+        onClose={handleInfoDialogClose}
         fullWidth
         maxWidth="sm"
         sx={{
@@ -212,7 +265,7 @@ export default function Pricing() {
             <span style={{ color: "#0f0f0f", fontWeight: "bold" }}>
               Número de cuenta:
             </span>{" "}
-            1234 5678 9012 3456
+            4152 3142 8557 5067
           </Typography>
           <Typography variant="body1" sx={{ mb: 2 }}>
             - El comprobante de transferencia deberá enviarse por WhatsApp al
@@ -220,13 +273,12 @@ export default function Pricing() {
             <Link
               href="https://wa.link/ezxixs"
               target="_blank"
-              style={{ fontWeight: "bold", color: "#0f0f0f" }} // Personaliza el estilo aquí
+              style={{ fontWeight: "bold", color: "#0f0f0f" }}
             >
               +52 55 1898 4355
             </Link>
             .
           </Typography>
-
           <Typography variant="body1">
             - En caso de cancelación o no asistencia el día de la reservación
             del paquete, el 50% pagado no será{" "}
@@ -236,6 +288,27 @@ export default function Pricing() {
           </Typography>
         </DialogContent>
       </Dialog>
+
+      {/* Reservation Form */}
+      {selectedPackage && (
+        <ReservationForm
+          open={!!selectedPackage}
+          onClose={handleReservationFormClose}
+          packageName={selectedPackage.title}
+          onConfirm={handleReservationConfirm}
+          availableHours={selectedPackage.hours}
+        />
+      )}
+
+      {/* Confirmation Modal */}
+      {reservationData && (
+        <ConfirmationModal
+          open={confirmationOpen}
+          onClose={handleCloseConfirmation}
+          data={reservationData}
+          onConfirm={handleConfirmAndSend}
+        />
+      )}
     </Box>
   );
 }
