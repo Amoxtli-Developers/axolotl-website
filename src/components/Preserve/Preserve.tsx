@@ -78,8 +78,15 @@ export default function Preserve() {
                 mientras contribuyes activamente a la conservación de la
                 biodiversidad local.
               </Typography>
-              <Box sx={{ display: "flex", justifyContent: { xs: "center", md: "start" } }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: { xs: "center", md: "start" },
+                }}
+              >
                 <Button
+                  href="https://forms.gle/Xxo7sZibYYxEARDL6"
+                  target="_blank"
                   variant="outlined"
                   sx={{
                     borderColor: "white",

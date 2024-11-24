@@ -62,7 +62,7 @@ export default function AxolotlHeader() {
           variant="h2"
           sx={{
             fontWeight: "bold",
-            fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
+            fontSize: { xs: "3rem", sm: "3rem", md: "4rem" },
             lineHeight: 1.2,
             mb: { xs: 1, md: 2 },
           }}

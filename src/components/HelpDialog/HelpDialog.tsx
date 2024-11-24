@@ -30,7 +30,7 @@ const helpOptions = [
     title: "Conviértete en voluntario",
     description:
       "Únete al equipo del Reptilario y Ajolotario Quetzal como voluntario. Participa en tareas esenciales como la limpieza de instalaciones, el cuidado de los animales y actividades de preservación. Es una forma práctica y significativa de contribuir directamente al cuidado de la biodiversidad mientras apoyas esta noble causa.",
-    link: "https://forms.gle/your-google-form-link",
+    link: "https://forms.gle/Xxo7sZibYYxEARDL6",
   },
 ];
 

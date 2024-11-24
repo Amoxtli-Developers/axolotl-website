@@ -108,6 +108,8 @@ export default function Footer() {
               Tienda Amoxtli
             </Button>
             <Button
+              href="https://forms.gle/Xxo7sZibYYxEARDL6"
+              target="_blank"
               variant="contained"
               sx={{
                 backgroundColor: "#4A9B98",

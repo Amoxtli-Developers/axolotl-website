@@ -71,6 +71,7 @@ export default function GridExperience() {
         onChange={handleTabChange}
         centered
         sx={{
+          display: "none",
           mb: 4,
           flexWrap: "wrap",
           ".MuiTabs-indicator": { display: "none" },

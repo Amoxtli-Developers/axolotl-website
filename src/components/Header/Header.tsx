@@ -56,7 +56,7 @@ export default function Header({ handleDialogOpen }: HeaderProps) {
               variant="h1"
               sx={{
                 fontFamily: "var(--font-transformasansBold)",
-                fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
+                fontSize: { xs: "3rem", sm: "3rem", md: "4rem" },
                 lineHeight: 1.2,
                 mb: 2,
               }}
